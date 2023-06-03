@@ -1,11 +1,11 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.endereco.Endereco;
+import med.voll.api.domain.endereco.Endereco;
 
 
 @Table(name = "medicos")
@@ -28,6 +28,7 @@ public class Medico {
 
     @Embedded // Adicionar os atributos do endereço na tabela "médicos"
     private Endereco endereco;
+    private Boolean ativo;
 
     public Medico(DadosCadastroMedico dados) {
         this.nome = dados.nome();
@@ -36,5 +37,25 @@ public class Medico {
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+        this.ativo = true;
     }
+
+    public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+
+        if (dados.endereco() != null) {
+            this.endereco.atulizarInformacoes(dados.endereco());
+        }
+    }
+
+    public void inativar() {
+        this.ativo = false;
+    }
+
 }
