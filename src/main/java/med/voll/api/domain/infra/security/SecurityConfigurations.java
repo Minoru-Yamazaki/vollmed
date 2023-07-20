@@ -28,6 +28,7 @@ public class SecurityConfigurations {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // para criar a política de sessão do tipo STATELESS
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers(HttpMethod.POST, "/login").permitAll();
+                    req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                     // req.requestMatchers(HttpMethod.DELETE, "/medicos").hasRole("ADMIN"); Controle por perfil
                     req.anyRequest().authenticated();
                 })
