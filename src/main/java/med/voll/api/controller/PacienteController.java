@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.domain.paciente.DadosCadastroPaciente;
 import med.voll.api.domain.paciente.DadosListagemPacientes;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/pacientes")
+@SecurityRequirement(name = "bearer-key") // Habilitar cabeçalho para inserir Baerer Token. Pode ser atribuído a um método específico ou a classe
 public class PacienteController {
 
     @Autowired
