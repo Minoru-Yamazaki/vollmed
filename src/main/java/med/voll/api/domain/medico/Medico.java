@@ -9,7 +9,7 @@ import med.voll.api.domain.endereco.Endereco;
 
 
 @Table(name = "medicos")
-@Entity(name = "medico")
+@Entity(name = "Medico")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,6 +29,10 @@ public class Medico {
     @Embedded // Adicionar os atributos do endereço na tabela "médicos"
     private Endereco endereco;
     private Boolean ativo;
+
+    public Medico(Long id) {
+        this.id = id;
+    }
 
     public Medico(DadosCadastroMedico dados) {
         this.nome = dados.nome();

@@ -10,7 +10,7 @@ import med.voll.api.domain.endereco.Endereco;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "paciente")
+@Entity(name = "Paciente")
 @Table(name = "pacientes")
 @EqualsAndHashCode(of = "id")
 public class Paciente {
@@ -22,9 +22,14 @@ public class Paciente {
     private String email;
     private String telefone;
     private String cpf;
+    private Boolean ativo;
 
     @Embedded
     private Endereco endereco;
+
+    public Paciente(Long id) {
+        this.id = id;
+    }
 
     public Paciente(DadosCadastroPaciente paciente){
         this.nome = paciente.nome();
