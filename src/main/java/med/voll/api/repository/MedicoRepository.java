@@ -27,7 +27,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
             ORDER BY FUNCTION('RAND')
             LIMIT 1
             """)
-    Optional<Medico> findRandomMedicoForConsulta(
+    Medico escolherMedicoAleatorioLivreNaData(
             @Param("especialidade") Especialidade especialidade,
             @Param("data") LocalDateTime data
     );
